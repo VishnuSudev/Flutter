@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +10,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int cur = 0;
+  void logout(){
+      FirebaseAuth.instance.signOut().then((value) => Navigator.pushNamed(context, 'login'));
+      
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +26,10 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: cur == 0 ? const Text("Home page") : const Text("Settings"),
+          actions: [
+            IconButton(onPressed: (){logout();}, icon: const Icon(Icons.logout))
+          ],
+          automaticallyImplyLeading: false,
         ),
         body: Center(
           child: cur == 0

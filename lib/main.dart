@@ -1,9 +1,12 @@
 import 'package:demo/home.dart';
 import 'package:demo/login_page.dart';
 import 'package:demo/register.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
